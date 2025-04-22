@@ -6,9 +6,12 @@
 define r = Character("[name]")
 define o = Character("Odette")
 define s = Character("Swan")
+define f = Character("Self")
 
 $ Courage_Points = 0  # pass odette's challenges
 default Courage = False
+$ Manifest_Points = 0 #summon magical item to escape forest
+default Manifest = False 
 
 # The game starts here.
 
@@ -65,6 +68,7 @@ label start:
 
     if Courage == True:
         "You followed the meadows, the path was flowery and ethereally magical."
+        jump tomeadow
     else:
         show odette at left 
         with move
@@ -75,8 +79,34 @@ label start:
         "Odette sighed in disappointment."
         o "Seem like I have no choice but to directly send you to the Self."
         jump toself
-
-    return 
+    
 label toself:
    play music "swanlake.mp3"
-   scene 
+   scene selflake at truecenter
+   with dissolve
+   f "Fancy meeting you here, [name]. I have heard you rejected Odette's orders to follow the meadows."
+   r "I am just too scared...I don't know what to do. And where are you?" 
+   f "I am you, this is all you. Look in the lake, can't you see yourself? Go on, look."
+
+   menu:
+      "I followed the Self's voice & looked into the lake reflection.":
+         $ Manifest = True 
+      "I ran away from the voice, trembling in fear & agony.":
+         pass
+   if Manifest == True :
+       r " I saw my own reflection in the water.I still look almost the same to the old [name] except there's something strange..."
+       f "I admire your willingness to learn, soon you will no longer be separated from your desires. Here's a gift for you."
+       show key at truecenter
+       with dissolve
+       pause (2.0)
+       hide key
+       with moveoutleft
+       r "What do I use this key for? Are you tricking me again?"
+       f "You have to let go of the fear of your Self! I am you, what is there to trick?"
+       jump tokey
+   else:
+        f "You cannot run forever from your own Self, [name]..."
+        "I heard a faint laugh, almost similar to my voice, it's sickening..."
+        jump tocave 
+label tocave:
+   
