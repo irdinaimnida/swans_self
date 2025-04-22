@@ -16,6 +16,7 @@ label start:
     # Show a background
     play music "swanlake.mp3"
     scene forest at truecenter
+    with dissolve 
     "After a short while, we reach the meadows just outside the neighborhood where we both live."
     "It's a scenic view I've grown used to. Autumn is especially beautiful here."
     "When we were children, we played in these meadows a lot, so they're full of memories."
@@ -25,7 +26,7 @@ label start:
 
     # Show Odette the first character sprite
     show odette at truecenter
-    with dissolve 
+    with fade 
 
     # Display lines of dialogue
     o "Hi there!"
@@ -53,7 +54,6 @@ label start:
 
     menu:
         "What will your choices be?"
-
         "Follow the meadows":
             $ Courage = True
 
@@ -66,6 +66,17 @@ label start:
     if Courage == True:
         "You followed the meadows, the path was flowery and ethereally magical."
     else:
+        show odette at left 
+        with move
+        pause(1.0)
+        hide swan 
+        with moveoutright
+       
         "Odette sighed in disappointment."
+        o "Seem like I have no choice but to directly send you to the Self."
+        jump toself
 
     return 
+label toself:
+   play music "swanlake.mp3"
+   scene 
