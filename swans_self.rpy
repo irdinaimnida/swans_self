@@ -227,6 +227,7 @@ label todoor:
    r " Thank you, Elina. But what do you mean you brew it with potions? "
    hide tea 
    with moveoutright
+   return
 
 
 label tocove:
@@ -236,6 +237,7 @@ label tocove:
    f " There is no use teaching a soul so rottenly attached to their own suffering..."
    r " Easy for you to say!"
    "The voice laughed even more hysterically."
+   return
 
 
 
