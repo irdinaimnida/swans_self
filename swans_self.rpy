@@ -9,7 +9,8 @@ define s = Character("Swan")
 define f = Character("Self")
 define a = Character("Author")
 
-# Declare points that decide the fate of reader
+# Declare points earned for the game. Different point leads to different endings.
+
 $ Courage_Points = 0  # pass odette's challenges
 default Courage = False
 $ Manifest_Points = 0 #summon magical item to escape forest
@@ -64,10 +65,13 @@ label start:
     s "Of course! I'm a swan, another version of your Ego. Right now you're nothing but your light and consciousness."
     s "The “LIGHT” is consciousness. Consciousness is one, manifesting in legions of forms or levels of consciousness."
     s "There is no one that is not all that is, for consciousness, though expressed in an infinite series of levels, is not divisional."
-    s "There is no real separation or gap in consciousness. I AM cannot be divided. I may conceive myself to be a swan, a princess, a corporate slave as you think or a mermaid, but the center of my being remains the same, regardless of the concept I hold of myself. At the center of manifestation, there is only one I AM manifesting in legions of forms or concepts of itself and “I am that I am”."
+    s "There is no real separation or gap in consciousness. I AM cannot be divided. I may conceive myself to be a swan, a princess, a corporate slave as you think or a mermaid, but the center of my being remains the same, regardless of the concept I hold of myself."
+    s "At the center of manifestation, there is only one I AM manifesting in legions of forms or concepts of itself and “I am that I am”."
     r "What even is Ego and consciousness...also why can't I feel my hands?"
     s "Ego is your physical form; look around...is anything real to you?"
     r "No...everything here seems surreal."
+    o " Its because you are now only your own consciousness, you left the physical plane, your human body!"
+
     o "Yes, you're correct!"
     o "Now you have to make a choice..."
 
@@ -123,7 +127,7 @@ label toself:
        "I heard a faint laugh, almost mockery to what I said."
        f "Oh, you're so clueless...no one send you to this lake except you. Your so-called reality that you want to escape, it exists because you keep giving so much awareness to it."
 
-       jump tokey
+       jump todoor 
    else:
         f "You cannot run forever from your own Self, [name]..."
         "I heard a faint laugh, almost similar to my voice, it's sickening..."
@@ -197,7 +201,6 @@ if  Law == True:
   f "It's always been the only truth, only that the mere humans are so filled up with their Ego and their attachment to it that they fail to realise until they banish from existence."
   hide elina
   with moveoutright
-
   jump todoor
 else:
   f "You still didn't get it don't you?"
@@ -219,25 +222,37 @@ label todoor:
    play music "swanlake.mp3"
    f "Congratulations, [name]... You have made it to the end of the enchanted land, without ever losing your Self."
    f " I have a gift for you, my dear..."
-   show tea at truecenter
+   show fairy at truecenter
    with fade
-   f "Here, have a refreshment, my own brewed tea from my blooming garden..."
+   f "Here, have a refreshment, my own brewed potion from my blooming garden..."
    f "You might think it's poison, but I have no intention in doing so. I am not polluting my garden with human's flesh."
    f "The potion I made are of pixie dusts,soon you wouldn't have any doubt in your heart... "
    r " Thank you, Elina. But what do you mean you brew it with potions? "
-   hide tea 
+   hide fairy 
    with moveoutright
-   return
+   $ renpy.pause()
+   return 
 
 
 label tocove:
    show cave at truecenter
+   play music "h2o.mp3"
    with fade
    "I looked around, realising I am in the final danger."
    f " There is no use teaching a soul so rottenly attached to their own suffering..."
    r " Easy for you to say!"
    "The voice laughed even more hysterically."
-   return
+   f "Here, [name]. I have a way for you to escape all this and return to your, most ordinary self."
+   show poison at truecenter
+   with dissolve  
+   f "Drink this and you will return to your ordinary self."
+   r "What would this potion do? Can I escape?"
+   hide poison
+   with moveoutright
+
+   $ renpy.pause()
+
+   return 
 
 
 
